@@ -1,10 +1,10 @@
-import {promisify} from 'util';
+import { promisify } from 'util';
 import Agenda from 'agenda';
 import settings from '../settings';
-import {bootstrapKoaApp} from './util';
-import {defineJob, jobOperations, jobAssertions, promiseJobOperation} from './job';
+import { bootstrapKoaApp } from './util';
+import { defineJob, jobOperations, jobAssertions, promiseJobOperation } from './job';
 
-const {app, router} = bootstrapKoaApp();
+const { app, router } = bootstrapKoaApp();
 
 const agenda = new Agenda({
   db: {
@@ -62,6 +62,9 @@ const runJobNow = getJobMiddleware(jobAssertions.alreadyExists, jobOperations.no
 const cancelJobs = getJobMiddleware(jobAssertions.doNotAssert, jobOperations.cancel);
 
 // Latest
+router.get('/api/health', (req, res, next) => {
+  res.status(200).send('OK');
+});
 router.get('/api/job', listJobs);
 router.post('/api/job', createJob);
 router.del('/api/job/:jobName', removeJob);
@@ -87,5 +90,5 @@ router.post('/api/v1/job/every', redirect('/api/job/every'));
 router.post('/api/v1/job/now', redirect('/api/job/now'));
 router.post('/api/v1/job/cancel', redirect('/api/job/cancel'));
 
-export {app, router, agenda, jobsReady};
+export { app, router, agenda, jobsReady };
 export default app;
