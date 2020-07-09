@@ -62,8 +62,8 @@ const runJobNow = getJobMiddleware(jobAssertions.alreadyExists, jobOperations.no
 const cancelJobs = getJobMiddleware(jobAssertions.doNotAssert, jobOperations.cancel);
 
 // Latest
-router.get('/api/health', (req, res, next) => {
-  res.status(200).send('OK');
+router.get('/api/health', async ctx => {
+  ctx.body = 'OK';
 });
 router.get('/api/job', listJobs);
 router.post('/api/job', createJob);
