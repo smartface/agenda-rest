@@ -1,6 +1,6 @@
 {
   "name": "@smartface/agenda-rest",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Scheduling as a Service",
   "main": "./dist/index.js",
   "jsnext:main": "./src/index.js",
@@ -10,7 +10,7 @@
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "test": "ava dist/test.js && npm run lint",
-    "start": "npm run dev && node cli.js"
+    "start": "npm run dev && node cli.js -t 60000"
   },
   "repository": {
     "type": "git",
